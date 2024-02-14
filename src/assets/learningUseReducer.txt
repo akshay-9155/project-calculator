@@ -1,0 +1,54 @@
+import {React, useReducer, useState} from 'react'
+
+const App = () => {
+  const ACTIONS = {
+    INCREMENTBY1: "incrementBy1",
+    INCREMENTBY5: "incrementBy5",
+    DECREMENTBY1: "decrementBy1",
+    DECREMENTBY5: "decrementBy5"
+  }
+  const reducer = (state, action) => {
+    switch(action.type){
+      case ACTIONS.INCREMENTBY1 :
+        return {...state, count: state.count + 1, change1: state.change1 + 1}
+      case ACTIONS.DECREMENTBY1 :
+        return {...state, count: state.count - 1, change1: state.change1 + 1}
+      case ACTIONS.INCREMENTBY5 :
+        return {...state, count: state.count + 5, change5: state.change5 + 1}
+      case ACTIONS.DECREMENTBY5 :
+        return {...state, count: state.count - 5, change5: state.change5 + 1}
+      default:
+        return state
+    }
+  }
+  const [state, dispatch] = useReducer(reducer, {
+    count: 0,
+    change1: 0,
+    change5: 0
+  })
+  const incerment1 = ()=>{
+    dispatch({type: ACTIONS.INCREMENTBY1})
+  }
+  const decrement1 = ()=>{
+    dispatch({type: ACTIONS.DECREMENTBY1})
+  }
+  const incerment5 = ()=>{
+    dispatch({type: ACTIONS.INCREMENTBY5})
+  }
+  const decrement5 = ()=>{
+    dispatch({type: ACTIONS.DECREMENTBY5})
+  }
+  return (
+    <div className='bg-zinc-900 h-screen text-zinc-100 flex items-center justify-center'>
+      <button onClick={decrement5} className='p-5 border-2 border-zinc-500 mx-5'>-5</button>
+      <button onClick={decrement1} className='p-5 border-2 border-zinc-500 mx-5'>-</button>
+      <span>{state.count}</span>
+      <button onClick={incerment1} className='p-5 border-2 border-zinc-500 mx-5'>+</button>
+      <button onClick={incerment5} className='p-5 border-2 border-zinc-500 mx-5'>+5</button>
+      <span className='mr-5'>{state.change1}</span>
+      <span>{state.change5}</span>
+    </div>
+  )
+}
+
+export default App
