@@ -115,7 +115,7 @@ const formatNumber = operand => {
 const App = () => {
   const [{ currentOperand, previousOperand, operation }, dispatch] = useReducer(reducer, {})
   return (
-    <div className=' bg-gradient-to-r flex items-center justify-center from-teal-300 to-indigo-500 h-screen'>
+    <div className=' bg-gradient-to-r h-[100dvh] sm:h-screen flex items-center justify-center from-teal-300 to-indigo-500'>
       <div className="calculator grid grid-cols-4 gap-2">
         <div className="output min-h-32 max-h-44 w-96 rounded-2xl cursor-pointer col-span-4 flex flex-col justify-around break-all items-end p-2 bg-zinc-900 text-zinc-50">
           <span className='text-3xl'>{formatNumber(previousOperand)} {operation}</span>
